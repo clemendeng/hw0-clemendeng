@@ -15,7 +15,7 @@ const controls = {
   tesselations: 5,
   'Load Scene': loadScene, // A function pointer, essentially
   'color': [ 255, 0, 0 ], 
-  shader: 0
+  shader: 1
 };
 
 let icosphere: Icosphere;
@@ -45,7 +45,7 @@ function main() {
   const gui = new DAT.GUI();
   gui.add(controls, 'tesselations', 0, 8).step(1);
   gui.addColor(controls, 'color');
-  gui.add(controls, 'shader', { Lambert: 0, Warp: 1 });
+  gui.add(controls, 'shader', { Lambert: 1, Warp: 2 });
   gui.add(controls, 'Load Scene');
 
   // get canvas and webgl context
@@ -90,7 +90,7 @@ function main() {
       icosphere.create();
     }
     let prog: ShaderProgram;
-    if(controls.shader == 0) {
+    if(controls.shader == 2) {
       prog = lambert;
     } else {
       prog = warp;
